@@ -1,0 +1,22 @@
+{
+  "name": "my-wiki",
+  "version": "1.0.0",
+  "description": "金比白的 Wiki",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10"
+  },
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wiki"
+  ],
+  "author": "bibaijin",
+  "license": "ISC"
+}
