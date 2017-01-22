@@ -13,21 +13,21 @@ main = hakyllWith config $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
+    match "dist/*" $ do
         route   idRoute
-        compile compressCssCompiler
+        compile copyFileCompiler
 
     match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ customPandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" siteCtx
             >>= relativizeUrls
 
     match "content/*" $ do
         route $ setExtension "html"
         compile $ customPandocCompiler
             >>= loadAndApplyTemplate "templates/article.html" postCtx
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" siteCtx
             >>= relativizeUrls
 
     match "index.html" $ do
@@ -35,16 +35,16 @@ main = hakyllWith config $ do
         compile $ do
             articles <- recentFirst =<< loadAll "content/*"
             let indexCtx =
-                    listField "articles" defaultContext (return articles) `mappend`
+                    listField "articles" siteCtx (return articles) `mappend`
                     constField "title" "首页" `mappend`
-                    defaultContext
+                    siteCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
-    match "templates/*" $ compile templateCompiler
+    match "templates/**" $ compile templateCompiler
 
 
 --------------------------------------------------------------------------------
@@ -63,5 +63,8 @@ customPandocCompiler =
 postCtx :: Context String
 postCtx =
   dateField "date" "%Y 年 %m 月 %d 日" `mappend`
-  constField "baseUrl" "https://bibaijin.github.io/wiki" `mappend`
+  siteCtx
+
+siteCtx :: Context String
+siteCtx =
   defaultContext
