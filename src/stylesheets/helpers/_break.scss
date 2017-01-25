@@ -118,6 +118,94 @@ $break-devices: () !default;
 // ----------------------------------------------------------------------------
 
 ///
+/// A minimum-maximum media query breakpoint
+///
+/// @group  helpers
+/// @access public
+/// @param  {Number|List} $breakpoint Number or number pair
+///
+@mixin break-at($breakpoint) {
+  @if type-of($breakpoint) == number {
+    @media only screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @elseif type-of($breakpoint) == list {
+    $min: nth($breakpoint, 1);
+    $max: nth($breakpoint, 2);
+    @if type-of($min) == number and type-of($max) == number {
+      @media only screen and (min-width: $min) and (max-width: $max) {
+        @content;
+      }
+    } @else {
+      @error "Invalid breakpoint: #{$breakpoint}";
+    }
+  } @else {
+    @error "Invalid breakpoint: #{$breakpoint}";
+  }
+}
+
+///
+/// An orientation media query breakpoint
+///
+/// @group  helpers
+/// @access public
+/// @param  {String} $breakpoint Orientation
+///
+@mixin break-at-orientation($breakpoint) {
+  @if type-of($breakpoint) == string {
+    @media only screen and (orientation: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @error "Invalid breakpoint: #{$breakpoint}";
+  }
+}
+
+///
+/// A maximum-aspect-ratio media query breakpoint
+///
+/// @group  helpers
+/// @access public
+/// @param  {Number} $breakpoint Ratio
+///
+@mixin break-at-ratio($breakpoint) {
+  @if type-of($breakpoint) == number {
+    @media only screen and (max-aspect-ratio: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @error "Invalid breakpoint: #{$breakpoint}";
+  }
+}
+
+///
+/// A minimum-maximum media query device breakpoint
+///
+/// @group  helpers
+/// @access public
+/// @param  {String|List} $breakpoint Device
+///
+@mixin break-at-device($device) {
+  @if type-of($device) == string {
+    $device: $device,;
+  }
+  @if type-of($device) == list {
+    $breakpoint: break-select-device($device);
+    @if nth($breakpoint, 2) != null {
+      $min: nth($breakpoint, 1);
+      $max: nth($breakpoint, 2);
+      @media only screen and (min-width: $min) and (max-width: $max) {
+        @content;
+      }
+    } @else {
+      @error "Invalid device: #{$device}";
+    }
+  } @else {
+    @error "Invalid device: #{$device}";
+  }
+}
+
+///
 /// A minimum media query device breakpoint
 ///
 /// @group  helpers

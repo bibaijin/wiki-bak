@@ -21,35 +21,46 @@
 ////
 
 // ----------------------------------------------------------------------------
-// Dependencies
+// Rules
 // ----------------------------------------------------------------------------
 
-@import '~modularscale-sass/stylesheets/modular-scale';
-@import '~material-design-color/material-color';
-@import '~material-shadows/material-shadows';
+// Icon placeholders
+%md-icon {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+  speak: none;
+  word-wrap: normal;
+  direction: ltr;
 
-// ----------------------------------------------------------------------------
-// Local imports
-// ----------------------------------------------------------------------------
+  // Icon rendered as button
+  &__button {
+    display: inline-block;
+    margin: $md-icon-margin;
+    padding: $md-icon-padding;
+    font-size: $md-icon-size;
+    cursor: pointer;
+  }
+}
 
-@import 'helpers/break';
-@import 'helpers/px2em';
+// Representational classes
+.md-icon {
+  @extend %md-icon;
 
-@import 'config';
-
-@import 'base/icons';
-@import 'base/reset';
-@import 'base/typeset';
-
-@import 'layout/base';
-@import 'layout/content';
-@import 'layout/footer';
-@import 'layout/header';
-@import 'layout/nav';
-@import 'layout/search';
-@import 'layout/sidebar';
-@import 'layout/source';
-
-@import 'extensions/admonition';
-@import 'extensions/footnotes';
-@import 'extensions/permalinks';
+  // Build representational classes
+  @each $ligature, $name in (
+    "arrow_back": "arrow-back",
+    "arrow_forward": "arrow-forward",
+    "menu": "menu",
+    "search": "search",
+    "school": "home"
+  ) {
+    &--#{$name}::before {
+      content: $ligature;
+    }
+  }
+}

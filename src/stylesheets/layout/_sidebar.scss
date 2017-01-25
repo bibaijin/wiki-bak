@@ -62,6 +62,18 @@
         display: none;
       }
 
+      // Expanded drawer
+      [data-md-toggle="drawer"]:checked ~ .md-container & {
+        @include z-depth(8);
+
+        transform: translateX(24.2rem);
+
+        // Just show drawer, if browser doesn't support 3D transforms
+        .no-csstransforms3d & {
+          display: block;
+        }
+      }
+
       // Hide overflow for nested navigation
       .md-sidebar__scrollwrap {
         overflow: hidden;
