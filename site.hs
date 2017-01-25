@@ -20,14 +20,13 @@ main = hakyllWith config $ do
     match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ customPandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" siteCtx
+            >>= loadAndApplyTemplate "templates/base.html" siteCtx
             >>= relativizeUrls
 
     match "content/*" $ do
         route $ setExtension "html"
         compile $ customPandocCompiler
-            >>= loadAndApplyTemplate "templates/article.html" postCtx
-            >>= loadAndApplyTemplate "templates/default.html" siteCtx
+            >>= loadAndApplyTemplate "templates/base.html" siteCtx
             >>= relativizeUrls
 
     match "index.html" $ do
@@ -41,7 +40,7 @@ main = hakyllWith config $ do
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
+                >>= loadAndApplyTemplate "templates/base.html" indexCtx
                 >>= relativizeUrls
 
     match "templates/**" $ compile templateCompiler
