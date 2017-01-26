@@ -22,8 +22,18 @@
 
 <!-- Main navigation -->
 <nav class="md-nav md-nav--primary">
+  <label class="md-nav__title md-nav__title--site" for="drawer">
+    <i class="md-icon md-icon--home md-nav__button"></i>
+    金比白的 Wiki
+  </label>
+
+  <div class="md-nav__source">
+    $partial("templates/partials/source.html")$
+  </div>
+
   <ul class="md-nav__list" data-md-scrollfix>
-    <li>web</li>
-    <li>front-end</li>
+    $for(categories)$
+      $partial("templates/partials/nav-item.html")$
+    $endfor$
   </ul>
 </nav>

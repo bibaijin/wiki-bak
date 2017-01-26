@@ -20,10 +20,21 @@
   IN THE SOFTWARE.
 -->
 
-<!-- Table of contents -->
-<nav class="md-nav md-nav--secondary">
-  <ul class="md-nav__list" data-md-scrollfix>
-    <li>1</li>
-    <li>2</li>
-  </ul>
-</nav>
+<!-- Main navigation item with nested items -->
+<li class="md-nav__item md-nav__item--nested">
+  <input class="md-toggle md-nav__toggle" data-md-toggle="$category$"
+    type="checkbox" id="$category$" />
+  <label class="md-nav__link" for="$category$">$category$</label>
+  <nav class="md-nav" data-md-component="collapsible">
+    <label class="md-nav__title" for="$category$">$category$</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      $for(articles)$
+        <li class="md-nav__item">
+          <a href="$url$" title="$title$" class="md-nav__link">
+            $title$
+          </a>
+        </li>
+      $endfor$
+    </ul>
+  </nav>
+</li>

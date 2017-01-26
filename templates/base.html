@@ -36,6 +36,12 @@
 </head>
 
 <body>
+  <!-- Hidden container for inline SVGs -->
+  <svg class="md-svg">
+    <defs>
+      $partial("templates/icons/github.svg")$
+    </defs>
+  </svg>
   <!-- State toggles -->
   <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" />
   <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" />
@@ -60,27 +66,16 @@
           </div>
         </div>
 
-        <!-- Table of contents -->
-        <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-          <div class="md-sidebar__scrollwrap">
-            <div class="md-sidebar__inner">
-              $partial("templates/partials/toc.html")$
-            </div>
-          </div>
+        <div class="my-title">
+          <h1>$title$</h1>
         </div>
-
-        <!-- Article -->
-        <div class="md-content">
-          <article class="md-content__inner md-typeset">
-            $body$
-          </article>
-        </div>
+        $body$
       </div>
     </main>
 
     $partial("templates/partials/footer.html")$
   </div>
 
-  <script src="/dist/bundle.js"></script>
+  <script src="/js/bundle.js"></script>
 </body>
 </html>

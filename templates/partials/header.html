@@ -27,7 +27,7 @@
     <div class="md-flex">
       <!-- Link to home -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="/">主页</a>
+        <a href="/" title="金比白的 Wiki" class="md-icon md-icon--home md-header-nav__button"></a>
       </div>
 
       <!-- Button to toggle drawer -->
@@ -38,15 +38,15 @@
       <!-- Header title -->
       <div class="md-flex__cell md-flex__cell--stretch">
         <span class="md-flex__ellipsis md-header-nav__title">
-          <span class="md-header-nav__parent">
-            parent.title
-          </span>
+          $currentCategory$
         </span>
       </div>
 
       <!-- Button to open search dialogue -->
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+        <label class="md-icon md-icon--search md-header-nav__button"
+          for="search">
+        </label>
         $partial("templates/partials/search.html")$
       </div>
 

@@ -20,4 +20,5 @@ executable my-wiki
   build-depends:       base == 4.*,
                        hakyll == 4.9.3.0,
                        containers == 0.5.7.1,
-                       pandoc == 1.19.1
+                       pandoc == 1.19.1,
+                       filepath == 1.4.1.0

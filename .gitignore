@@ -20,4 +20,6 @@ cabal.sandbox.config
 _cache/
 _site/
 
+### My ###
 node_modules/
+js/

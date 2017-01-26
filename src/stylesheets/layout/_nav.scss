@@ -31,8 +31,44 @@
 
   // Table of contents
   &--secondary {
-    transition: border-left 0.25s;
     border-left: 0.4rem solid $md-color-primary;
+    transition: border-left 0.25s;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    // List item
+    li {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      padding: .625em 1.2rem 0;
+
+      // Add bottom spacing to last item
+      &:last-child {
+        padding-bottom: 1.2rem;
+      }
+
+      // 2nd+ level items
+      & & {
+        padding-right: 0;
+
+        // Remove bottom spacing for nested items
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
+
+      a {
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: color .125s;
+      }
+    }
   }
 
   // List title
